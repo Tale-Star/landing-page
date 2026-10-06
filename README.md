@@ -12,14 +12,7 @@ Requiere Node.js 22 o compatible con Vite 6.
 npm install
 ```
 
-Crea `.env` desde `.env.example` para configurar los destinos de los CTA:
-
-```dotenv
-VITE_WEB_APP_URL=http://127.0.0.1:5173
-VITE_MOBILE_APP_URL=https://github.com/Tale-Star/frontend-mobile/releases
-```
-
-`VITE_WEB_APP_URL` es la URL base de [Tale Star Web](https://github.com/Tale-Star/frontend-web), sin `/` final. Los botones *Iniciar sesión* y *Crear cuenta* apuntan a `/login` y `/register` de esa URL. `VITE_MOBILE_APP_URL` es el punto de descarga de la app móvil. Si no se definen, se usan los valores de arriba.
+Los destinos públicos son opcionales hasta que la Web App y la aplicación móvil tengan una URL publicada. Configura `VITE_WEB_APP_URL` con la URL base de [Tale Star Web](https://github.com/Tale-Star/frontend-web), sin `/` final; los botones de acceso añaden `/login` o `/register`. Configura `VITE_MOBILE_APP_URL` con el enlace oficial de descarga cuando exista una versión móvil. En desarrollo, la Web App usa `http://127.0.0.1:5173` por defecto. En producción, las URLs ausentes o locales no generan enlaces: los CTA correspondientes se muestran como *Próximamente*.
 
 ## Desarrollo local
 
@@ -47,7 +40,7 @@ Vite sirve la landing en `http://127.0.0.1:5174`. El puerto 5173 queda libre par
 
 Cada push a `main` ejecuta `.github/workflows/deploy.yml`, que valida con ESLint, compila y publica `dist/` en GitHub Pages. Requiere activar **Settings → Pages → Source: GitHub Actions** una sola vez.
 
-Para cambiar los destinos de los CTA en producción sin tocar código, define `VITE_WEB_APP_URL` y `VITE_MOBILE_APP_URL` en **Settings → Secrets and variables → Actions → Variables** y vuelve a ejecutar el workflow.
+Para habilitar los destinos de los CTA en producción sin tocar código, define `VITE_WEB_APP_URL` y `VITE_MOBILE_APP_URL` con sus URLs públicas en **Settings → Secrets and variables → Actions → Variables** y vuelve a ejecutar el workflow. La configuración ignora URLs locales en el build de producción.
 
 ## Comprobaciones
 

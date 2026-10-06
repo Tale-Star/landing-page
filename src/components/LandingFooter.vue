@@ -25,8 +25,24 @@ const year = new Date().getFullYear()
       </nav>
       <nav aria-label="Cuenta">
         <h4>Cuenta</h4>
-        <a :href="links.login">Iniciar sesión</a>
-        <a :href="links.register">Crear cuenta</a>
+        <a
+          v-if="links.login"
+          :href="links.login"
+        >Iniciar sesión</a>
+        <span
+          v-else
+          aria-disabled="true"
+          title="Acceso web próximamente"
+        >Iniciar sesión · Próximamente</span>
+        <a
+          v-if="links.register"
+          :href="links.register"
+        >Crear cuenta</a>
+        <span
+          v-else
+          aria-disabled="true"
+          title="Acceso web próximamente"
+        >Crear cuenta · Próximamente</span>
       </nav>
     </div>
     <div class="wrap footer__legal">
@@ -72,6 +88,13 @@ nav a {
 
 nav a:hover {
   color: var(--ts-purple-900);
+}
+
+nav span[aria-disabled="true"] {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: var(--text-3);
 }
 
 .footer__legal {

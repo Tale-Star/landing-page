@@ -18,6 +18,7 @@ import { links } from '@/config/links'
             realidad aumentada, directamente en tu dispositivo.
           </p>
           <a
+            v-if="links.mobileApp"
             class="btn band__btn"
             :href="links.mobileApp"
             target="_blank"
@@ -25,6 +26,15 @@ import { links } from '@/config/links'
           >
             Descargar la app móvil
           </a>
+          <button
+            v-else
+            class="btn band__btn"
+            type="button"
+            disabled
+            title="La aplicación móvil aún no tiene una versión descargable."
+          >
+            App móvil próximamente
+          </button>
         </div>
         <div
           class="phone"
@@ -72,6 +82,13 @@ p {
 .band__btn {
   color: var(--ts-purple-900);
   background: #fff;
+}
+
+.band__btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.72;
+  box-shadow: none;
+  transform: none;
 }
 
 .phone {

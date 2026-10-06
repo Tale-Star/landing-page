@@ -65,9 +65,19 @@ const segments = [
             </li>
           </ul>
           <a
+            v-if="s.href"
             class="btn btn-primary"
             :href="s.href"
           >{{ s.cta }}</a>
+          <button
+            v-else
+            class="btn btn-primary"
+            type="button"
+            disabled
+            :aria-label="`${s.cta}: la aplicación web estará disponible próximamente`"
+          >
+            {{ s.cta }} · Próximamente
+          </button>
         </article>
       </div>
     </div>
@@ -141,6 +151,13 @@ li b {
 .segment .btn {
   align-self: flex-start;
   margin-top: auto;
+}
+
+.segment .btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+  box-shadow: none;
+  transform: none;
 }
 
 @media (max-width: 820px) {

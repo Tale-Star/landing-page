@@ -28,13 +28,33 @@ function closeMenu() {
 
       <div class="nav__actions">
         <a
+          v-if="links.login"
           class="btn btn-ghost"
           :href="links.login"
         >Iniciar sesión</a>
+        <button
+          v-else
+          class="btn btn-ghost"
+          type="button"
+          disabled
+          title="La aplicación web aún no tiene una URL pública configurada."
+        >
+          Iniciar sesión · Próximamente
+        </button>
         <a
+          v-if="links.register"
           class="btn btn-primary"
           :href="links.register"
         >Crear cuenta</a>
+        <button
+          v-else
+          class="btn btn-primary"
+          type="button"
+          disabled
+          title="La aplicación web aún no tiene una URL pública configurada."
+        >
+          Crear cuenta · Próximamente
+        </button>
       </div>
 
       <button
@@ -63,13 +83,33 @@ function closeMenu() {
         >{{ s.label }}</a>
         <div class="nav__drawer-actions">
           <a
+            v-if="links.login"
             class="btn btn-ghost"
             :href="links.login"
           >Iniciar sesión</a>
+          <button
+            v-else
+            class="btn btn-ghost"
+            type="button"
+            disabled
+            title="La aplicación web aún no tiene una URL pública configurada."
+          >
+            Iniciar sesión · Próximamente
+          </button>
           <a
+            v-if="links.register"
             class="btn btn-primary"
             :href="links.register"
           >Crear cuenta</a>
+          <button
+            v-else
+            class="btn btn-primary"
+            type="button"
+            disabled
+            title="La aplicación web aún no tiene una URL pública configurada."
+          >
+            Crear cuenta · Próximamente
+          </button>
         </div>
       </div>
     </div>
@@ -168,6 +208,13 @@ function closeMenu() {
   display: grid;
   gap: 10px;
   margin-top: 14px;
+}
+
+.nav button:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+  box-shadow: none;
+  transform: none;
 }
 
 @media (max-width: 820px) {

@@ -14,10 +14,21 @@ import { links } from '@/config/links'
         </p>
         <div class="cta__row">
           <a
+            v-if="links.register"
             class="btn btn-primary"
             :href="links.register"
           >Usar la app web</a>
+          <button
+            v-else
+            class="btn btn-primary"
+            type="button"
+            disabled
+            title="La aplicación web aún no tiene una URL pública configurada."
+          >
+            App web próximamente
+          </button>
           <a
+            v-if="links.mobileApp"
             class="btn btn-soft"
             :href="links.mobileApp"
             target="_blank"
@@ -25,6 +36,15 @@ import { links } from '@/config/links'
           >
             Descargar la app móvil
           </a>
+          <button
+            v-else
+            class="btn btn-soft"
+            type="button"
+            disabled
+            title="La aplicación móvil aún no tiene una versión descargable."
+          >
+            App móvil próximamente
+          </button>
         </div>
       </div>
     </div>
@@ -57,6 +77,13 @@ h2 {
   justify-content: center;
   gap: 12px;
   margin-top: 26px;
+}
+
+.cta__row .btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+  box-shadow: none;
+  transform: none;
 }
 
 @media (max-width: 820px) {
